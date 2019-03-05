@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="myexamples.bookmark.controller"/>
+    <mvc:annotation-driven />
+
+    <bean id="springTemplateResolver"
+          class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".html" />
+    </bean>
+
+    <bean id="springTemplateEngine"
+          class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="springTemplateResolver" />
+        <property name="additionalDialects">
+            <set>
+                <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+            </set>
+        </property>
+    </bean>
+
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="springTemplateEngine" />
+        <property name="characterEncoding" value="UTF-8" />
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url"
+                  value="jdbc:mysql://127.0.0.1:3306/bookmark?useSSL=false&amp;serverTimezone=UTC">
+        </property>
+        <property name="username" value="root"></property>
+        <property name="password" value="1234"></property>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+</beans>
