@@ -16,10 +16,12 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+    
     <filter>
         <filter-name>log-Filter</filter-name>
         <filter-class>myexamples.bookmark.filter.CustomFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -28,6 +30,16 @@
         <filter-name>log-Filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>SpringConfig</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -45,7 +57,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/appconfig-root.xml</param-value>
+        <param-value>/WEB-INF/spring/*.xml</param-value>
     </context-param>
 
     <listener>

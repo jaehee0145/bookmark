@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/appconfig-root.xml"})
+@ContextConfiguration(locations = {"file:../../../../../main/webapp/WEB-INF/spring/appconfig-root.xml"})
 public class MyBatisTest {
     @Autowired
     private SqlSessionFactory sqlFactory;
