@@ -7,7 +7,7 @@
 * MyBatis  
 * Bootstrap4  
 * AWS  
-* MySQL  
+* MySQL 5.7.24  
 
 * Travis CI  
 * Spring Security   

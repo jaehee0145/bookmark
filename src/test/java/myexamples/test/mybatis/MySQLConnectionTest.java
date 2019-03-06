@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/appconfig-root.xml"})
+@ContextConfiguration(locations = {"file:../../../../../main/webapp/WEB-INF/spring/appconfig-root.xml"})
 public class MySQLConnectionTest {
     @Autowired
     private DataSource dataSource;
