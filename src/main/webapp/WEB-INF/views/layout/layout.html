@@ -1,17 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Layout page</title>
+    <meta layout:fragment="meta" id="_csrf" name="_csrf" content="${_csrf.token}" />
+    <meta layout:fragment="meta" id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+    <link layout:fragment="css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link layout:fragment="css" rel="stylesheet" th:href="@{../../../resource/css/common.css}">
 </head>
-<body>
 <header layout:fragment="header">
-    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+    <nav class="navbar shadow pb-3 pt-3 navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/main">LINE FRIENDS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <div class="btn-group dropdown-menu-sm-left">
+                            <form method="get" class="d-flex" action="/product/list">
+                                <input type="text" id="search" name="searchStr" class="d-none rounded form-control mt-1 m-0" value=""/>
+                                <button id="search-btn" type="button" class="btn" th:onclick="'javascript:showSearch()'">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/users/login}" th:text="로그인"></a>
+                                <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/users/join}" th:text="회원가입"></a>
+                                <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}" th:text="로그아웃"></a>
+                            </div>
+                            <a th:href="@{/cart/list}" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script layout:fragment="script" src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script layout:fragment="script" type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+<script layout:fragment="script" src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+<script layout:fragment="script" src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 <section layout:fragment="content">
 </section>
-<footer>
-    <p>My footer</p>
-    <p layout:fragment="custom-footer">Custom footer here</p>
-</footer>
 </body>
+<footer layout:fragment="footer" class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
 </html>

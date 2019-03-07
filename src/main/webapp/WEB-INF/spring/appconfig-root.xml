@@ -9,9 +9,11 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="myexamples.bookmark.controller"/>
+    <context:component-scan
+            base-package="myexamples.bookmark.controller, myexamples.bookmark.service"/>
     <mvc:annotation-driven />
-
+    <mvc:resources mapping="/resource/**" location="/resource/"/>
+    
     <bean id="springTemplateResolver"
           class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/views/" />
