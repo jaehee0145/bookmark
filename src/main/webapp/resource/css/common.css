@@ -22,6 +22,14 @@ a {
     margin:15px 0px 15px 0px;
 }
 
+#search-btn {
+    background-color:transparent;
+}
+
+#user-menu {
+    left:60%;
+}
+
 #search {
     height:32px;
     width:180px;

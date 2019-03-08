@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class HelloController {
+public class MainController {
 
     @GetMapping("/")
-    public String hello(Model model) {
+    public String index(Model model) {
         model.addAttribute("message", "Spring MVC Thymeleaf Hello World Example!!");
-        return "hello";
+        return "main";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "account/login";
+    @GetMapping("/main")
+    public String main(Model model) {
+        model.addAttribute("message", "Spring MVC Thymeleaf Hello World Example!!");
+        return "main";
     }
 }
