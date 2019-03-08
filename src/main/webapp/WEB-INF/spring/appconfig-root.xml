@@ -9,8 +9,9 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan
-            base-package="myexamples.bookmark.controller, myexamples.bookmark.service"/>
+    <context:component-scan base-package="myexamples.bookmark.controller"/>
+    <context:component-scan base-package="myexamples.bookmark.dao"/>
+    <context:component-scan base-package="myexamples.bookmark.service"/>
     <mvc:annotation-driven />
     <mvc:resources mapping="/resource/**" location="/resource/"/>
     
@@ -48,5 +49,11 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="WEB-INF/spring/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="mappers/userMapper.xml"></property>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
 </beans>

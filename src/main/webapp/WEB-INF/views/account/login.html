@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8" />
@@ -14,6 +14,9 @@
         </div>
     </div>
     <hr class="my-4">
+    <div th:each="accounts : ${accountList}">
+        <h3 th:text="${accounts.id}"></h3>
+    </div>
     <div class="container">
         <div class="row justify-content-center mt-5 mb-5">
             <div class="card" style="min-width:450px;">

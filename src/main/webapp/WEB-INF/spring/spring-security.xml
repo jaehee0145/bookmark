@@ -9,14 +9,15 @@
     http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http auto-config="true">
+        <security:intercept-url pattern="/" access="hasAnyRole()" />
         <security:intercept-url pattern="/login" access="permitAll()" />
         <security:intercept-url pattern="/resources/**"  access="permitAll()"/>
         <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
         <security:form-login login-page="/login"
-                    default-target-url="/hello"
+                    default-target-url="/main"
                     authentication-failure-url="/login?error=true" />
-        <security:logout logout-success-url="/hello" />
+        <security:logout logout-success-url="/main" />
         <security:csrf disabled="true" />
         <!-- 사용자 접속은 1명까지 가능 -->
         <security:session-management>
